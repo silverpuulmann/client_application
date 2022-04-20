@@ -1,7 +1,15 @@
 package silver.srini.clients.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import silver.srini.clients.entities.Client;
 
-public interface ClientRepository extends CrudRepository<Client, Long> {
+import java.util.List;
+
+@Repository
+public interface ClientRepository extends JpaRepository<Client, Long> {
+
+    Client findByUserName(String username);
+
+    List<Client> findByCreatedById(Long id);
 }

@@ -1,5 +1,6 @@
 package silver.srini.clients.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Client {
 
     @Id
@@ -27,8 +29,10 @@ public class Client {
 
     String address;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     Country country;
 
     String password;
+
+    Long createdById;
 }
