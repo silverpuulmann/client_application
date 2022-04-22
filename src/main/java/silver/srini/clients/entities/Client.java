@@ -17,6 +17,7 @@ import javax.persistence.*;
 public class Client {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long Id;
 
     String firstName;
@@ -29,8 +30,7 @@ public class Client {
 
     String address;
 
-    @OneToOne
-    Country country;
+    Long countryId;
 
     String password;
 

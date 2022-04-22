@@ -6,4 +6,5 @@ import silver.srini.clients.entities.Country;
 
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Long> {
+    Country getByName(String country);
 }

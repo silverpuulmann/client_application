@@ -2,6 +2,7 @@ package silver.srini.clients.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import silver.srini.clients.dto.AddClientDto;
 import silver.srini.clients.entities.Client;
 import silver.srini.clients.entities.Country;
 import silver.srini.clients.services.ClientServices;
@@ -11,7 +12,7 @@ import silver.srini.clients.services.LoginService;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 7200)
 @RestController
 @RequestMapping("api/")
 public class ClientAppController {
@@ -37,7 +38,7 @@ public class ClientAppController {
     }
 
     @PostMapping("saveclient")
-    public void saveClient(@RequestBody Client client){
+    public void saveClient(@RequestBody AddClientDto client){
         clientServices.saveClient(client);
     }
 
