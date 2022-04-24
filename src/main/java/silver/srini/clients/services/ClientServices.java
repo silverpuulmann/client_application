@@ -29,13 +29,17 @@ public class ClientServices {
 
     public void saveClient(AddClientDto client) {
         Client newClient = new Client();
-        Country country = countryRepository.getByName(client.getCountry());
+
+        if (client.getCountry() != null) {
+            Country country = countryRepository.getByName(client.getCountry());
+            newClient.setCountryId(country.getId());
+        }
+
         newClient.setFirstName(client.getFirstName());
         newClient.setLastName(client.getLastName());
         newClient.setUserName(client.getUserName());
         newClient.setEmail(client.getEmail());
         newClient.setAddress(client.getAddress());
-        newClient.setCountryId(country.getId());
         newClient.setCreatedById(client.getCreatedById());
         this.clientRepository.save(newClient);
     }
