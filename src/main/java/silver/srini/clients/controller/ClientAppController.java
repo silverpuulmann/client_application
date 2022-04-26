@@ -3,6 +3,7 @@ package silver.srini.clients.controller;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import silver.srini.clients.dto.AddClientDto;
+import silver.srini.clients.dto.EditClientDto;
 import silver.srini.clients.entities.Client;
 import silver.srini.clients.entities.Country;
 import silver.srini.clients.services.ClientServices;
@@ -27,7 +28,7 @@ public class ClientAppController {
         this.countryService = countryService;
     }
 
-    @PostMapping("clients")
+    @GetMapping("clients")
     public List<Client> getClients(@RequestParam Long userId){
         return clientServices.getClients(userId);
     }
@@ -37,9 +38,14 @@ public class ClientAppController {
         return clientServices.getClient(id);
     }
 
-    @PostMapping("saveclient")
-    public void saveClient(@RequestBody AddClientDto client){
-        clientServices.saveClient(client);
+    @PostMapping("addclient")
+    public void addClient(@RequestBody AddClientDto client){
+        clientServices.addClient(client);
+    }
+
+    @PostMapping("editclient")
+    public void editClient(@RequestBody EditClientDto client){
+        clientServices.editClient(client);
     }
 
     @PostMapping(value = "login", produces = MediaType.APPLICATION_JSON_VALUE)
