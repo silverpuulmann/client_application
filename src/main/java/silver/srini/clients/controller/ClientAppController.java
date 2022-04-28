@@ -18,6 +18,13 @@ import java.util.Map;
 @RequestMapping("api/")
 public class ClientAppController {
 
+    //TODO: Use only Autowired or Allargsconstructor approach, not both for controller and services!
+    //TODO: Add password encryption using Spring security
+    //TODO: Add filter to check for token in the incoming requests
+    //TODO: Services should respond with DTO, not with Entity. Otherwise you will also respond fields you don't want (PASSWORD!)
+    //TODO: Add functionality to delete users
+    //TODO: Check why React makes two requests using axios for clients list and for countries
+
     private final ClientServices clientServices;
     private final LoginService loginService;
     private final CountryService countryService;
