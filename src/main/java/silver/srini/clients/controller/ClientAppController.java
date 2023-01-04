@@ -3,8 +3,8 @@ package silver.srini.clients.controller;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import silver.srini.clients.dto.AddClientDto;
+import silver.srini.clients.dto.ClientDTO;
 import silver.srini.clients.dto.EditClientDto;
-import silver.srini.clients.entities.Client;
 import silver.srini.clients.entities.Country;
 import silver.srini.clients.services.ClientServices;
 import silver.srini.clients.services.CountryService;
@@ -36,12 +36,12 @@ public class ClientAppController {
     }
 
     @GetMapping("clients")
-    public List<Client> getClients(@RequestParam Long userId){
+    public List<ClientDTO> getClients(@RequestParam Long userId){
         return clientServices.getClients(userId);
     }
 
     @GetMapping("client")
-    public Client getClient(@RequestParam Long id){
+    public ClientDTO getClient(@RequestParam Long id){
         return clientServices.getClient(id);
     }
 

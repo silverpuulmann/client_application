@@ -3,13 +3,16 @@ package silver.srini.clients.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import silver.srini.clients.dto.AddClientDto;
+import silver.srini.clients.dto.ClientDTO;
 import silver.srini.clients.dto.EditClientDto;
 import silver.srini.clients.entities.Client;
 import silver.srini.clients.entities.Country;
+import silver.srini.clients.mapper.ClientMapper;
 import silver.srini.clients.repositories.ClientRepository;
 import silver.srini.clients.repositories.CountryRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientServices {
@@ -20,12 +23,17 @@ public class ClientServices {
     @Autowired
     CountryRepository countryRepository;
 
-    public List<Client> getClients(Long userId){
-        return this.clientRepository.findByCreatedById(userId);
+    @Autowired
+    ClientMapper clientMapper;
+
+    public List<ClientDTO> getClients(Long userId){
+        List<Client> clientList = this.clientRepository.findByCreatedById(userId);
+        List<ClientDTO> clientDTOList = clientList.stream().map(clientMapper::clientEntityToDto).collect(Collectors.toList());
+        return clientDTOList;
     }
 
-    public Client getClient(Long id){
-        return this.clientRepository.getOne(id);
+    public ClientDTO getClient(Long id){
+        return clientMapper.clientEntityToDto(this.clientRepository.getOne(id));
     }
 
     public void addClient(AddClientDto client) {
